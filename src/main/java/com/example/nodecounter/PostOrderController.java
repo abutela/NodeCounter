@@ -166,36 +166,36 @@ public class PostOrderController {
     }
     @FXML
     protected void onButtonAClick(){
-        nodeHandler(buttonA, 1, 6);
+        nodeHandler(buttonA, 1, 11);
     }
     @FXML
     protected void onButtonBClick() {
 
-        nodeHandler(buttonB, 2, 4);
+        nodeHandler(buttonB, 2, 5);
     }
     @FXML
     protected void onButtonCClick() {
-        nodeHandler(buttonC, 3, 8);
+        nodeHandler(buttonC, 3, 10);
     }
 
     @FXML
     protected void onButtonDClick() {
-        nodeHandler(buttonD, 4, 2);
+        nodeHandler(buttonD, 4, 3);
     }
 
     @FXML
     protected void onButtonEClick() {
-        nodeHandler(buttonE, 5, 5);
+        nodeHandler(buttonE, 5, 4);
     }
 
     @FXML
     protected void onButtonFClick() {
-        nodeHandler(buttonF, 6, 7);
+        nodeHandler(buttonF, 6, 6);
     }
 
     @FXML
     protected void onButtonGClick() {
-        nodeHandler(buttonG, 7, 10);
+        nodeHandler(buttonG, 7, 9);
     }
 
     @FXML
@@ -205,17 +205,17 @@ public class PostOrderController {
 
     @FXML
     protected void onButtonIClick() {
-        nodeHandler(buttonI, 9, 3);
+        nodeHandler(buttonI, 9, 2);
     }
 
     @FXML
     protected void onButtonJClick() {
-        nodeHandler(buttonJ, 10, 9);
+        nodeHandler(buttonJ, 10, 7);
     }
 
     @FXML
     protected void onButtonKClick() throws InterruptedException {
-        nodeHandler(buttonK, 11, 11);
+        nodeHandler(buttonK, 11, 8);
     }
 
     @FXML
