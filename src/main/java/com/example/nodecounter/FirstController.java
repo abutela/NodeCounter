@@ -23,6 +23,7 @@ public class FirstController extends Main {
     // testing switching scenes
     private Scene preOrderScene;
     private Scene inOrderScene;
+    private Scene postOrderScene;
     SoundsClass sounds = new SoundsClass();
 
     public void setPreOrderScene(Scene scene) {
@@ -31,7 +32,11 @@ public class FirstController extends Main {
     }
 
     public void setInOrderScene(Scene scene) {
+
         inOrderScene = scene;
+    }
+    public void setPostOrderScene(Scene scene){
+        postOrderScene = scene;
     }
 
     public void openPreOrderScene(ActionEvent actionEvent) {
@@ -42,13 +47,13 @@ public class FirstController extends Main {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(inOrderScene);
     }
+
+    public void openPostOrderScene(ActionEvent actionEvent){
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(postOrderScene);
+    }
     // -----end test ---
 
-    @FXML
-    protected void onPostOrderButtonClick() {
-
-        welcomeText.setText("You clicked the Post-order button!");
-    }
     @FXML
     protected void onExitButtonClick() {
 

@@ -19,8 +19,6 @@ public class Main extends Application {
         FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("start-menu.fxml"));
         Parent menuPane = menuLoader.load();
         Scene menuScene = new Scene(menuPane);
-//        String menuCss = this.getClass().getResource("../ButtonStyles.css").toExternalForm();
-//        firstScene.getStylesheets().add(menuCss);
 
         // Loader and pane for preOrder traversal
         FXMLLoader preOrderLoader = new FXMLLoader(getClass().getResource("preOrder.fxml"));
@@ -32,17 +30,25 @@ public class Main extends Application {
         Parent inOrderPane = inOrderLoader.load();
         Scene inOrderScene = new Scene(inOrderPane);
 
+        FXMLLoader postOrderLoader = new FXMLLoader(getClass().getResource("postOrder.fxml"));
+        Parent postOrderPane = postOrderLoader.load();
+        Scene postOrderScene = new Scene(postOrderPane);
+
         // Injecting second scene into controller for first scene
         FirstController firstController = menuLoader.getController();
         firstController.setPreOrderScene(preOrderScene);
         firstController.setInOrderScene(inOrderScene);
+        firstController.setPostOrderScene(postOrderScene);
 
         // Injecting first scene into controller of second scene
-        PreOrderController preOrderController = preOrderLoader.getController();
+        PreOrderController preOrderController = (PreOrderController) preOrderLoader.getController();
         preOrderController.setFirstScene(menuScene);
 
-        InOrderController inOrderController = inOrderLoader.getController();
+        InOrderController inOrderController = (InOrderController) inOrderLoader.getController();
         inOrderController.setFirstScene(menuScene);
+
+        PostOrderController postOrderController = (PostOrderController) postOrderLoader.getController();
+        postOrderController.setFirstScene(menuScene);
 
         primaryStage.setTitle("Node Counter 3000");
         primaryStage.setScene(menuScene);
@@ -55,6 +61,9 @@ public class Main extends Application {
                 }
                 if(InOrderController.madeTimerYet()){
                     InOrderController.killTimer();
+                }
+                if(PostOrderController.madeTimerYet()){
+                    PostOrderController.killTimer();
                 }
             }
         });

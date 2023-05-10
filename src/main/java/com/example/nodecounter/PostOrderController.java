@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -18,8 +19,11 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static javafx.scene.paint.Color.RED;
+import static javafx.scene.paint.Color.WHITE;
 
-public class InOrderController {
+
+public class PostOrderController {
     private Scene firstScene;
     private static Boolean isTimer = false;
     private int nodeNum = 1;
@@ -30,8 +34,6 @@ public class InOrderController {
     @FXML Button startButton;
     @FXML AnchorPane mainWindow;
     @FXML AnchorPane YouWinPane;
-    @FXML Button PlayAgainButton;
-    @FXML Button BackToMenuButton;
 
     @FXML
     AnchorPane startBtnPane;
@@ -42,7 +44,7 @@ public class InOrderController {
     @FXML
     Label timerLabel;
 
-    public InOrderController(){
+    public PostOrderController(){
         answerKey.put(1, false);
         answerKey.put(2, false);
         answerKey.put(3, false);
@@ -77,6 +79,7 @@ public class InOrderController {
                     timerLabel.setText("0:" + time + "");
                 }
                 if (time == 10){
+                    disableNodes();
                     timer.cancel();
                     timerLabel.setText("0:00");
                     timer.purge();
@@ -127,7 +130,7 @@ public class InOrderController {
         startBtnPane.setVisible(false);
         mainWindow.getChildren().remove(startBtnPane);
         makeTimer();
-
+        enableNodes();
     }
 
     private void nodeHandler(Button button, int answerKeyNum, int correctAnswer){
@@ -137,35 +140,37 @@ public class InOrderController {
             sounds.playBloop();
             button.setText(String.valueOf(nodeNum));
             nodeNum++;
-
             if (button.getText().equals(Integer.toString(correctAnswer))) {
                 answerKey.replace(answerKeyNum, true);
-                button.setStyle("-fx-background-radius: 50; -fx-background-color: white; -fx-border-width: 3; -fx-border-color: linear-gradient(to bottom right, aliceblue, cyan); -fx-border-radius: 50; -fx-border-insets: -2;" + setFontSize());
-
+                button.setStyle("-fx-background-radius: 50; -fx-background-color: goldenrod; -fx-border-width: 3; -fx-border-color: orange; -fx-border-radius: 50; -fx-border-insets: -2;-fx-effect: dropshadow(three-pass-box,#fdff9b,15,0,0,0.7);"+ setFontSize());
+                button.setTextFill(WHITE);
                 if(button.getText().equals("11") && checkAnswers()){
                     YouWinPane.setVisible(true);
                     timer.cancel();
                     timer.purge();
                     timerLabel.setText("YAY!");
+                    disableNodes();
                     sounds.playTada();
                 }
             }
             else{
-                button.setStyle("-fx-background-radius: 50; -fx-background-color: lightcyan; -fx-border-width: 3; -fx-border-color: linear-gradient(to bottom right, aliceblue, teal); -fx-border-radius: 50; -fx-border-insets: -2;" + setFontSize());
+                button.setTextFill(RED);
+                button.setStyle("-fx-background-radius: 50; -fx-background-color: #666666; -fx-border-width: 3; -fx-border-color: linear-gradient(to bottom right, lightyellow, black); -fx-border-radius: 50; -fx-border-insets: -2;" + setFontSize());
             }
         }else{
             sounds.playBlip();
             button.setText("");
-            button.setStyle("-fx-background-radius: 50; -fx-background-color: lightcyan; -fx-border-width: 3; -fx-border-color: linear-gradient(to bottom right, aliceblue, teal); -fx-border-radius: 50; -fx-border-insets: -2;");
+            button.setStyle("-fx-background-radius: 50; -fx-background-color: #666666; -fx-border-width: 3; -fx-border-color: linear-gradient(to bottom right, lightyellow, black); -fx-border-radius: 50; -fx-border-insets: -2;");
             nodeNum--;
         }
     }
     @FXML
-    protected void onButtonAClick() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    protected void onButtonAClick(){
         nodeHandler(buttonA, 1, 6);
     }
     @FXML
     protected void onButtonBClick() {
+
         nodeHandler(buttonB, 2, 4);
     }
     @FXML
@@ -209,19 +214,48 @@ public class InOrderController {
     }
 
     @FXML
-    protected void onButtonKClick() {
+    protected void onButtonKClick() throws InterruptedException {
         nodeHandler(buttonK, 11, 11);
     }
 
     @FXML
     protected void onPlayAgainButtonClick(){
+
         restart();
     }
 
     private void resetNodes(Button NodeName, int AnswerKeyNum){
         NodeName.setText("");
         answerKey.replace(AnswerKeyNum, false);
-        NodeName.setStyle("-fx-background-radius: 50; -fx-background-color: lightcyan; -fx-border-width: 3; -fx-border-color: linear-gradient(to bottom right, aliceblue, teal); -fx-border-radius: 50; -fx-border-insets: -2;");
+        NodeName.setStyle("-fx-background-radius: 50; -fx-background-color: #666666; -fx-border-width: 3; -fx-border-color: yellow; -fx-border-radius: 50; -fx-border-insets: -2;");
+    }
+
+    private void disableNodes(){
+        buttonA.setDisable(true);
+        buttonB.setDisable(true);
+        buttonC.setDisable(true);
+        buttonD.setDisable(true);
+        buttonE.setDisable(true);
+        buttonF.setDisable(true);
+        buttonG.setDisable(true);
+        buttonH.setDisable(true);
+        buttonI.setDisable(true);
+        buttonJ.setDisable(true);
+        buttonK.setDisable(true);
+    }
+
+    private void enableNodes(){
+        buttonA.setDisable(false);
+        buttonB.setDisable(false);
+        buttonC.setDisable(false);
+        buttonD.setDisable(false);
+        buttonE.setDisable(false);
+        buttonF.setDisable(false);
+        buttonG.setDisable(false);
+        buttonH.setDisable(false);
+        buttonI.setDisable(false);
+        buttonJ.setDisable(false);
+        buttonK.setDisable(false);
     }
 
     public void restart(){

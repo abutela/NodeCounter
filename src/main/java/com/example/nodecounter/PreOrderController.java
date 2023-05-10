@@ -30,8 +30,6 @@ public class PreOrderController {
     @FXML Button startButton;
     @FXML AnchorPane mainWindow;
     @FXML AnchorPane YouWinPane;
-    @FXML Button PlayAgainButton;
-    @FXML Button BackToMenuButton;
 
     @FXML
     AnchorPane startBtnPane;
@@ -127,280 +125,90 @@ public class PreOrderController {
         startBtnPane.setVisible(false);
         mainWindow.getChildren().remove(startBtnPane);
         makeTimer();
-
     }
 
-    private void changeClock(int i){
+    private void nodeHandler(Button button, int answerKeyNum, int correctAnswer){
+        answerKey.replace(answerKeyNum, false);
 
-    }
-    @FXML
-    protected void onButtonAClick() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        answerKey.replace(1, false);
-
-        if (buttonA.getText().equals("")) {
+        if (button.getText().equals("")) {
             sounds.playBloop();
-            buttonA.setText(String.valueOf(nodeNum));
+            button.setText(String.valueOf(nodeNum));
             nodeNum++;
-            if (buttonA.getText().equals("1")) {
-                answerKey.replace(1, true);
-//                sounds.playGoodSound();
-                buttonA.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonA.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-                }
-        }else{
-            sounds.playBlip();
-            buttonA.setText("");
-            buttonA.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-            // error checking, but maybe not the best method
-//        if (i == 1 && button1.getText().equals("")) {
-//            button1.setText(String.valueOf(i));
-//            i++;
-//        }else if (i == 1 && button1.getText().equals("1")){
-//            button1.setText("");
-//            i--;
-//        }
-    }
-    @FXML
-    protected void onButtonBClick() {
 
-        if (buttonB.getText().equals("")) {
-            answerKey.replace(2, false);
+            if (button.getText().equals(Integer.toString(correctAnswer))) {
+                answerKey.replace(answerKeyNum, true);
+                button.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
 
-            buttonB.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonB.getText().equals("2")) {
-                sounds.playBloop();
-                answerKey.replace(2, true);
-                buttonB.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonB.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonB.setText("");
-            buttonB.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-    @FXML
-    protected void onButtonCClick() {
-        answerKey.replace(3, false);
-
-        if (buttonC.getText().equals("")) {
-            sounds.playBloop();
-            buttonC.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonC.getText().equals("7")) {
-                answerKey.replace(3, true);
-                buttonC.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonC.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonC.setText("");
-            buttonC.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-
-    @FXML
-    protected void onButtonDClick() {
-        answerKey.replace(4, false);
-
-        if (buttonD.getText().equals("")) {
-            sounds.playBloop();
-            buttonD.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonD.getText().equals("3")) {
-                answerKey.replace(4, true);
-                buttonD.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonD.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonD.setText("");
-            buttonD.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-
-    @FXML
-    protected void onButtonEClick() {
-        answerKey.replace(5, false);
-
-        if (buttonE.getText().equals("")) {
-            sounds.playBloop();
-            buttonE.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonE.getText().equals("6")) {
-                answerKey.replace(5, true);
-                buttonE.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonE.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonE.setText("");
-            buttonE.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-
-    @FXML
-    protected void onButtonFClick() {
-        answerKey.replace(6, false);
-
-        if (buttonF.getText().equals("")) {
-            sounds.playBloop();
-            buttonF.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonF.getText().equals("8")) {
-                answerKey.replace(6, true);
-                buttonF.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonF.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonF.setText("");
-            buttonF.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-
-    @FXML
-    protected void onButtonGClick() {
-        answerKey.replace(7, false);
-
-        if (buttonG.getText().equals("")) {
-            sounds.playBloop();
-            buttonG.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonG.getText().equals("9")) {
-                answerKey.replace(7, true);
-                buttonG.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonG.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonG.setText("");
-            buttonG.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-
-    @FXML
-    protected void onButtonHClick() {
-        answerKey.replace(8, false);
-
-        if (buttonH.getText().equals("")) {
-            sounds.playBloop();
-            buttonH.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonH.getText().equals("4")) {
-                answerKey.replace(8, true);
-                buttonH.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonH.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonH.setText("");
-            buttonH.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-
-    @FXML
-    protected void onButtonIClick() {
-        answerKey.replace(9, false);
-
-        if (buttonI.getText().equals("")) {
-            sounds.playBloop();
-            buttonI.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonI.getText().equals("5")) {
-                answerKey.replace(9, true);
-                buttonI.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonI.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonI.setText("");
-            buttonI.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-
-    @FXML
-    protected void onButtonJClick() {
-        answerKey.replace(10, false);
-
-        if (buttonJ.getText().equals("")) {
-            sounds.playBloop();
-            buttonJ.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonJ.getText().equals("10")) {
-                answerKey.replace(10, true);
-                buttonJ.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-            }
-            else{
-                buttonJ.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-            }
-        }else{
-            sounds.playBlip();
-            buttonJ.setText("");
-            buttonJ.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
-            nodeNum--;
-        }
-    }
-
-    @FXML
-    protected void onButtonKClick() throws InterruptedException {
-        answerKey.replace(11, false);
-
-        if (buttonK.getText().equals("")) {
-            sounds.playBloop();
-            buttonK.setText(String.valueOf(nodeNum));
-            nodeNum++;
-            if (buttonK.getText().equals("11")) {
-                answerKey.replace(11, true);
-                buttonK.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
-                if(checkAnswers()){
-//                    mainWindow.getChildren().add(YouWinPane);
+                if(checkAnswers() && button.getText().equals("11")){
                     YouWinPane.setVisible(true);
                     timer.cancel();
                     timer.purge();
                     timerLabel.setText("YAY!");
                     sounds.playTada();
-
                 }
             }
             else{
-                buttonK.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
+                button.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
             }
+
         }else{
             sounds.playBlip();
-            buttonK.setText("");
-            buttonK.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
+            button.setText("");
+            button.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;");
             nodeNum--;
         }
+    }
+    @FXML
+    protected void onButtonAClick(){
+        nodeHandler(buttonA, 1, 1);
+    }
+    @FXML
+    protected void onButtonBClick() {
+        nodeHandler(buttonB, 2, 2);
+    }
+    @FXML
+    protected void onButtonCClick() {
+        nodeHandler(buttonC, 3, 7);
+    }
+
+    @FXML
+    protected void onButtonDClick() {
+        nodeHandler(buttonD, 4, 3);
+    }
+
+    @FXML
+    protected void onButtonEClick() {
+        nodeHandler(buttonE, 5, 6);
+    }
+
+    @FXML
+    protected void onButtonFClick() {
+        nodeHandler(buttonF, 6, 8);
+    }
+
+    @FXML
+    protected void onButtonGClick() {
+        nodeHandler(buttonG, 7, 9);
+    }
+
+    @FXML
+    protected void onButtonHClick() {
+        nodeHandler(buttonH, 8, 4);
+    }
+
+    @FXML
+    protected void onButtonIClick() {
+        nodeHandler(buttonI, 9, 5);
+    }
+
+    @FXML
+    protected void onButtonJClick() {
+        nodeHandler(buttonJ, 10, 10);
+    }
+
+    @FXML
+    protected void onButtonKClick() throws InterruptedException {
+        nodeHandler(buttonK, 11, 11);
     }
 
     @FXML
