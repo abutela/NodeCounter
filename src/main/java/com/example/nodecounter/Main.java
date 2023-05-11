@@ -19,6 +19,9 @@ public class Main extends Application {
         FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("start-menu.fxml"));
         Parent menuPane = menuLoader.load();
         Scene menuScene = new Scene(menuPane);
+        primaryStage.setResizable(false);
+//        String menuCss = this.getClass().getResource("../ButtonStyles.css").toExternalForm();
+//        firstScene.getStylesheets().add(menuCss);
 
         // Loader and pane for preOrder traversal
         FXMLLoader preOrderLoader = new FXMLLoader(getClass().getResource("preOrder.fxml"));

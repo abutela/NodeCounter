@@ -1,5 +1,9 @@
 package com.example.nodecounter;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,8 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -39,6 +45,10 @@ public class PreOrderController {
     Button buttonG, buttonH, buttonI, buttonJ, buttonK;
     @FXML
     Label timerLabel;
+
+    @FXML
+    ImageView sakuraA, sakuraB, sakuraC, sakuraD, sakuraE, sakuraF,
+                sakuraG, sakuraH, sakuraI, sakuraJ, sakuraK;
 
     public PreOrderController(){
         answerKey.put(1, false);
@@ -137,9 +147,10 @@ public class PreOrderController {
 
             if (button.getText().equals(Integer.toString(correctAnswer))) {
                 answerKey.replace(answerKeyNum, true);
-                button.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: lime; -fx-border-radius: 50;" + setFontSize());
+                button.setStyle("-fx-background-radius: 50; -fx-background-color: linear-gradient(to bottom right, #ffe0ec, #ff99c1); -fx-border-color: #fff1f7; -fx-border-radius: 50;" + setFontSize());
 
                 if(checkAnswers() && button.getText().equals("11")){
+                    setSakuraVisible();
                     YouWinPane.setVisible(true);
                     timer.cancel();
                     timer.purge();
@@ -158,6 +169,34 @@ public class PreOrderController {
             nodeNum--;
         }
     }
+
+    private void setSakuraVisible(){
+        sakuraA.setVisible(true);
+        sakuraB.setVisible(true);
+        sakuraC.setVisible(true);
+        sakuraD.setVisible(true);
+        sakuraE.setVisible(true);
+        sakuraF.setVisible(true);
+        sakuraG.setVisible(true);
+        sakuraH.setVisible(true);
+        sakuraI.setVisible(true);
+        sakuraJ.setVisible(true);
+        sakuraK.setVisible(true);
+    }
+    private void setSakuraInvisible(){
+        sakuraA.setVisible(false);
+        sakuraB.setVisible(false);
+        sakuraC.setVisible(false);
+        sakuraD.setVisible(false);
+        sakuraE.setVisible(false);
+        sakuraF.setVisible(false);
+        sakuraG.setVisible(false);
+        sakuraH.setVisible(false);
+        sakuraI.setVisible(false);
+        sakuraJ.setVisible(false);
+        sakuraK.setVisible(false);
+    }
+
     @FXML
     protected void onButtonAClick(){
         nodeHandler(buttonA, 1, 1);
@@ -216,6 +255,12 @@ public class PreOrderController {
         restart();
     }
 
+    protected void resetNodes(Button button, int answerKeyNum){
+        button.setText("");
+        answerKey.replace(answerKeyNum,false);
+        button.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
+    }
+
     public void restart(){
         // reset timer stuff
         killTimer();
@@ -223,49 +268,21 @@ public class PreOrderController {
         timerLabel.setText("0:00");
 
         // reset nodes
-        buttonA.setText("");
-        answerKey.replace(1,false);
-        buttonA.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
+        resetNodes(buttonA,1);
+        resetNodes(buttonB, 2);
+        resetNodes(buttonC, 3);
+        resetNodes(buttonD, 4);
+        resetNodes(buttonE, 5);
+        resetNodes(buttonF, 6);
+        resetNodes(buttonG, 7);
+        resetNodes(buttonH, 8);
+        resetNodes(buttonI, 9);
+        resetNodes(buttonJ, 10);
+        resetNodes(buttonK, 11);
 
-        buttonB.setText("");
-        answerKey.replace(2,false);
-        buttonB.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
+        // Hide the blossoms
+        setSakuraInvisible();
 
-        buttonC.setText("");
-        answerKey.replace(3,false);
-        buttonC.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-
-        buttonD.setText("");
-        answerKey.replace(4,false);
-        buttonD.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-
-        buttonE.setText("");
-        answerKey.replace(5,false);
-        buttonE.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-
-        buttonF.setText("");
-        answerKey.replace(6,false);
-        buttonF.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-
-        buttonG.setText("");
-        answerKey.replace(7,false);
-        buttonG.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-
-        buttonH.setText("");
-        answerKey.replace(8,false);
-        buttonH.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-
-        buttonI.setText("");
-        answerKey.replace(9,false);
-        buttonI.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-
-        buttonJ.setText("");
-        answerKey.replace(10,false);
-        buttonJ.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
-
-        buttonK.setText("");
-        answerKey.replace(11,false);
-        buttonK.setStyle("-fx-background-radius: 50; -fx-background-color: #38c73a; -fx-border-color: #1d632a; -fx-border-radius: 50;" + setFontSize());
 
         // reset the windows
         YouWinPane.setVisible(false);
