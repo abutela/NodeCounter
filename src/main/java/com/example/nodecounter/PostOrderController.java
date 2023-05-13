@@ -27,7 +27,7 @@ public class PostOrderController {
     private Scene firstScene;
     private static Boolean isTimer = false;
     private int nodeNum = 1;
-    private SoundsClass sounds = new SoundsClass();
+    private SoundsClass sounds = SoundsClass.getInstance();
     HashMap<Integer, Boolean> answerKey = new HashMap<>();
     public static Timer timer;
     @FXML Button backButton;

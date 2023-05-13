@@ -8,6 +8,13 @@ import javafx.scene.media.Media;
 
 public class SoundsClass
 {
+    private Boolean isMuted = false;
+    private final static SoundsClass INSTANCE = new SoundsClass();
+    private SoundsClass(){};
+
+    public static SoundsClass getInstance(){
+        return INSTANCE;
+    }
     public void playBloop(){
         playSound("src/main/resources/Sounds/bloop.wav");
     }
@@ -39,9 +46,28 @@ public class SoundsClass
     public void playTada(){
         playSound("src/main/resources/Sounds/tada.wav");
     }
+
+    public void setMute(){
+        isMuted = true;
+    }
+    public void unMute(){
+        isMuted = false;
+    }
+
+    public Boolean isMuted(){
+        return isMuted;
+    }
     public synchronized void playSound(String musicFile) {
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
+        if (isMuted){
+            mediaPlayer.setVolume(0);
+        }
+        else{
+            mediaPlayer.setVolume(0.5);
+        }
+
         mediaPlayer.play();
     }
 }

@@ -3,15 +3,44 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nodecounter.FirstController">
-   <children>
-      <VBox fx:id="mainWindow" alignment="CENTER" prefHeight="407.0" prefWidth="606.0" style="-fx-background-color: radial-gradient(radius 100%, teal, aliceblue);">
+   <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: radial-gradient(radius 100%, teal, aliceblue);">
+      <ImageView fx:id="muteImg" fitHeight="33.0" fitWidth="27.0" layoutX="13.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../../Images/pixelperfect_mute.png" />
+         </image>
+         <effect>
+            <Glow>
+               <input>
+                  <Blend />
+               </input>
+            </Glow>
+         </effect>
+      </ImageView>
+      <ImageView fx:id="soundImg" fitHeight="33.0" fitWidth="27.0" layoutX="14.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/pixelperfect_volume.png" />
+         </image>
+         <effect>
+            <Glow>
+               <input>
+                  <Blend />
+               </input>
+            </Glow>
+         </effect>
+      </ImageView>
+      <Button fx:id="soundButton" layoutX="7.0" layoutY="357.0" mnemonicParsing="false" onMouseClicked="#onSoundButtonClick" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: rgba(0,0,0,0);" />
+      <VBox fx:id="mainWindow" alignment="CENTER" layoutX="60.0" layoutY="-1.0" prefHeight="407.0" prefWidth="503.0">
          <children>
             <Label fx:id="welcomeText" text="Let's practice counting nodes!">
                <font>
@@ -33,7 +62,7 @@
                   <Font name="Bauhaus 93" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="inOrderButton" mnemonicParsing="false" onAction="#openInOrderScene" onMouseEntered="#onInOrderHover" onMouseExited="#offInOrderHover" prefHeight="58.0" prefWidth="332.0" style="-fx-background-color: white; -fx-border-color: cyan;" text="InOrder Counting">
@@ -41,7 +70,7 @@
                   <Font name="Bauhaus 93" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="postOrderButton" mnemonicParsing="false" onAction="#openPostOrderScene" onMouseEntered="#onPostOrderHover" onMouseExited="#offPostOrderHover" prefHeight="58.0" prefWidth="332.0" style="-fx-background-color: white; -fx-border-color: cyan;" text="PostOrder Counting">
@@ -49,18 +78,15 @@
                   <Font name="Bauhaus 93" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClick" onMouseEntered="#onExitHover" onMouseExited="#offExitHover" prefHeight="58.0" prefWidth="332.0" style="-fx-background-color: white; -fx-border-color: cyan;" text="Exit">
                <font>
                   <Font name="Bauhaus 93" size="24.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
             </Button>
          </children>
       </VBox>
-   </children>
+   </AnchorPane>
 </AnchorPane>

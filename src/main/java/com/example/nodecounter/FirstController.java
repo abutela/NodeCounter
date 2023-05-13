@@ -5,26 +5,21 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class FirstController extends Main {
-    public Button preOrderButton;
-    public Button inOrderButton;
-    public Button postOrderButton;
-    public Button exitButton;
-    public VBox mainWindow;
     @FXML
-    private Label welcomeText;
+    public Button preOrderButton, inOrderButton, postOrderButton, exitButton, soundButton;
 
-    // testing switching scenes
-    private Scene preOrderScene;
-    private Scene inOrderScene;
-    private Scene postOrderScene;
-    SoundsClass sounds = new SoundsClass();
+    @FXML
+    public VBox mainWindow;
+
+    @FXML
+    private ImageView soundImg, muteImg;
+    private Scene preOrderScene, inOrderScene, postOrderScene;
+    SoundsClass sounds = SoundsClass.getInstance();
 
     public void setPreOrderScene(Scene scene) {
 
@@ -99,5 +94,23 @@ public class FirstController extends Main {
     @FXML
     protected void offExitHover(){
        exitButton.setStyle("-fx-background-color:white; -fx-border-color:cyan");
+    }
+
+    @FXML
+    protected void onSoundButtonClick() {
+        if (soundImg.isVisible()){
+            soundImg.setVisible(false);
+            muteImg.setVisible(true);
+            sounds.setMute();
+        }
+        else{
+            soundImg.setVisible(true);
+            muteImg.setVisible(false);
+            sounds.unMute();
+        }
+    }
+
+    public Boolean isMuted(){
+        return muteImg.isVisible();
     }
 }

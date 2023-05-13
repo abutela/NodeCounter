@@ -1,9 +1,5 @@
 package com.example.nodecounter;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,11 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,8 +20,8 @@ public class PreOrderController {
     private Scene firstScene;
     private static Boolean isTimer = false;
     private int nodeNum = 1;
-    private SoundsClass sounds = new SoundsClass();
-    HashMap<Integer, Boolean> answerKey = new HashMap<>();
+    private SoundsClass sounds =  SoundsClass.getInstance();
+    private HashMap<Integer, Boolean> answerKey = new HashMap<>();
     public static Timer timer;
     @FXML Button backButton;
     @FXML Button startButton;
@@ -118,7 +109,6 @@ public class PreOrderController {
     }
 
     public void setFirstScene(Scene scene) {
-
         firstScene = scene;
     }
 
