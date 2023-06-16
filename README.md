@@ -1,5 +1,5 @@
 # NodeCounter
-![screenshot of NodeCounter](nodecounter-screen.png)
+![screenshot of NodeCounter](preorder-screen.png)
 
 # What?
 A program for practicing binary tree traversal
