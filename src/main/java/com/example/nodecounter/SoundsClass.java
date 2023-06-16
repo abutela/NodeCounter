@@ -1,8 +1,6 @@
 package com.example.nodecounter;
 
-import javax.sound.sampled.*;
 import java.io.File;
-import java.io.IOException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.Media;
 
